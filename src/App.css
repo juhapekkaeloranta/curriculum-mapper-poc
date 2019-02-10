@@ -1,32 +1,67 @@
+/**
+ * Reset button styles.
+ * It takes a bit of work to achieve a neutral look.
+ */
+ button {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  /* show a hand cursor on hover; some argue that we
+  should keep the default arrow cursor for buttons */
+  cursor: pointer;
+}
+
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.curri-button {
+  border: solid 1px #d3d3d3;
+  border-radius: 4px;
+  width: 200px;
+  height: 50px;
+  margin-bottom: 0.5vh
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.curri-button:hover {
+  border-color: #a7a7a7;
+}
+
+.curri-button:focus {
+  outline-width: 0;
+}
+
+.curri-column {
+  margin: 1vh;
+  display: flex;
+  flex-direction: column
+}
+
+.curri-column-container {
+  padding: 1vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.right-menu {
+  margin: 1vh;
+  height: 98vh;
+  justify-items: end;
+  background-color: #325277;
+  border-radius: 4px;
+}
+
+.right-menu-splitter {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  height: 97.5vh;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.curri-button.send {
+  margin: 1vh;
 }
