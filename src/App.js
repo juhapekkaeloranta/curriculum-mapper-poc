@@ -43,44 +43,24 @@ class App extends Component {
   }
 
   updateTopicValue = (courseName, topicText, value) => {
-    const p = this.state.prequisites
-
-    const courseIndex = p
-      .findIndex(course => course.courseName === courseName);
-    const topicIndex = p[courseIndex].topics
-      .findIndex(topic => topic.name === topicText)
-    
-    const updatedTopic = { ...p[courseIndex].topics[topicIndex], value: value };
-
-    const updatedTopics = [
-      ...p[courseIndex].topics.slice(0, topicIndex),
-      updatedTopic,
-      ...p[courseIndex].topics.slice(topicIndex + 1),
-    ];
-
-    const updatedCourse = { ...p[courseIndex], topics: updatedTopics }
-
-    const updatedPrequisites = [
-      ...p.slice(0, courseIndex),
-      updatedCourse,
-      ...p.slice(courseIndex + 1)
-    ]
+    const updatedPrequisites = this.state.prequisites
+      .map(course => course.courseName !== courseName 
+        ? course 
+        : { ...course, topics: course.topics.map(topic => topic.name !== topicText
+          ? topic
+          : { ...topic, value: value } )})
 
     this.setState({ ...this.state, prequisites: updatedPrequisites })
   }
 
-  updateTargetTopicValue = (courseName, topicText, value) => {
-    const t = this.state.targetCourse
-    const topicIndex = t.topics
-      .findIndex(topic => topic.name === topicText)
-    const updatedTopic = { ...t.topics[topicIndex], value: value }
-    const updatedTopics = [
-      ...t.topics.slice(0, topicIndex),
-      updatedTopic,
-      ...t.topics.slice(topicIndex + 1),
-    ];
-    const updatedCourse = { ...t, topics: updatedTopics }
-    this.setState({ ...this.state, targetCourse: updatedCourse })
+  updateTargetTopicValue = (topicText, value) => {
+    const updatedTopics = this.state.targetCourse.topics.map(topic =>
+      topic.name !== topicText
+      ? topic
+      : { ...topic, value: value }
+    )
+    const updatedTargetCourse = { ...this.state.targetCourse, topics: updatedTopics }
+    this.setState({ ...this.state, targetCourse: updatedTargetCourse })
   }
 
   render() {
@@ -103,7 +83,7 @@ class App extends Component {
             <CourseColumn
               course={this.state.targetCourse.courseName}
               topics={this.state.targetCourse.topics}
-              updateTopicValueF={(courseName, topicText, value) => this.updateTargetTopicValue(courseName, topicText, value)}
+              updateTopicValueF={(_, topicText, value) => this.updateTargetTopicValue(topicText, value)}
             />
             <button 
               className="curri-button send"
