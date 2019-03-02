@@ -46,7 +46,7 @@ To run locally:
 
 ## Deployment
 
-- npm build
+- npm run build
 - cd build
 - git push
 

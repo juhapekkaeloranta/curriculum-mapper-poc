@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import HeaderButton from './HeaderButton'
-import ToggleButton from './ToggleButton'
 import ResultRow from './ResultBox';
 import ResultHeader from './ResultHeader';
 

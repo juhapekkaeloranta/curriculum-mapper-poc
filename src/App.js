@@ -71,13 +71,13 @@ class App extends Component {
   }
 
   changeView = () => {
-    this.state.page == 'student'
+    this.state.page === 'student'
     ? this.setState({ ...this.state, page: 'teacher'})
     : this.setState({ ...this.state, page: 'student'})
   }
 
   render() {
-    if (this.state.page == 'student') {
+    if (this.state.page === 'student') {
       return (
         <div className="App">
 
