@@ -46,8 +46,12 @@ To run locally:
 
 ## Deployment
 
+Here's a hacky way to deploy to github pages:
+
 - npm run build
 - cd build
-- git push
-
-Note: init build dir as git repo to deploy to github pages
+- git init
+- git add -A
+- git commit -m "Deploy"
+- git remote add gh-pages git@github.com:hy-mapper/hy-mapper.github.io.git
+- git push --force gh-pages master
