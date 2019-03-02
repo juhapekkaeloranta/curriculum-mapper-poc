@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import CourseColumn from './CourseColumn';
+import CourseResults from './CourseResults';
 
 class App extends Component {
   state = {
@@ -26,7 +27,12 @@ class App extends Component {
           { name: 'Bayesin kaava', value: 1 },
           { name: 'Diskreetit todennäköisyydet', value: 1 }
         ]
-      }  
+      },
+      { courseName: "Muu",
+        topics: [
+          { name: 'Closed form solution', value: 1 },
+        ]
+      } 
     ],
     targetCourse: {
       courseName: 'IML',
@@ -35,7 +41,8 @@ class App extends Component {
         { name: 'overfit', value: 1 },
         { name: 'cross-validation', value: 1 }
       ]
-    }
+    },
+    page: 'student'
   }
 
   saveResults = () => {
@@ -63,39 +70,70 @@ class App extends Component {
     this.setState({ ...this.state, targetCourse: updatedTargetCourse })
   }
 
+  changeView = () => {
+    this.state.page == 'student'
+    ? this.setState({ ...this.state, page: 'teacher'})
+    : this.setState({ ...this.state, page: 'student'})
+  }
+
   render() {
-    return (
-      <div className="App">
+    if (this.state.page == 'student') {
+      return (
+        <div className="App">
 
-        <div className="curri-column-container">
-          {this.state.prequisites.map(course => 
-            <CourseColumn
-              key={course.courseName}
-              course={course.courseName}
-              topics={course.topics}
-              updateTopicValueF={(courseName, topicText, value) => this.updateTopicValue(courseName, topicText, value)}
-            />
-          )}
+            <div className="curri-column-container">
+              {this.state.prequisites.map(course => 
+                <CourseColumn
+                  key={course.courseName}
+                  course={course.courseName}
+                  topics={course.topics}
+                  updateTopicValueF={(courseName, topicText, value) => this.updateTopicValue(courseName, topicText, value)}
+                />
+              )}
+            </div>
+            
+            <div className="right-menu">
+              <div className="right-menu-splitter">
+                <CourseColumn
+                  course={this.state.targetCourse.courseName}
+                  topics={this.state.targetCourse.topics}
+                  updateTopicValueF={(_, topicText, value) => this.updateTargetTopicValue(topicText, value)}
+                />
+                <button 
+                  className="curri-button send"
+                  style={{backgroundColor: '#e8e8e8'}}
+                  onClick={this.saveResults}>
+                  Save
+                </button>
+              </div>
+            </div>
+            
+            <button class="curri-button bottom-button" onClick={this.changeView}>Vaihda näkymää</button>
         </div>
-        
-        <div className="right-menu">
-          <div className="right-menu-splitter">
-            <CourseColumn
-              course={this.state.targetCourse.courseName}
-              topics={this.state.targetCourse.topics}
-              updateTopicValueF={(_, topicText, value) => this.updateTargetTopicValue(topicText, value)}
-            />
-            <button 
-              className="curri-button send"
-              style={{backgroundColor: '#e8e8e8'}}
-              onClick={this.saveResults}>
-              Save
-            </button>
-          </div>
-        </div>
+      )
+    } else {
+      return (
+        <div className="App">
 
-      </div>
-    );
+          
+            <div className="curri-column-container">
+                {this.state.prequisites
+                  //.filter(course => course.courseName == 'Linis 1')
+                  .map(course => 
+                    <div className="curri-course-result-container">
+                      <CourseResults
+                        key={course.courseName}
+                        course={course.courseName}
+                        topics={course.topics}
+                      />
+                    </div>
+                )}
+            </div>
+          <button class="curri-button bottom-button" onClick={this.changeView}>Vaihda näkymää</button>
+        </div>
+      )
+    }
+    
   }
 }
 

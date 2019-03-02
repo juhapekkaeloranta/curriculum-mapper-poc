@@ -26,6 +26,15 @@
   margin-bottom: 0.5vh
 }
 
+.curri-button.narrow {
+  border: solid 1px #d3d3d3;
+  border-radius: 4px;
+  width: 100px;
+  height: 50px;
+  margin-bottom: 0.5vh;
+  margin-left: 0.5vh;
+}
+
 .curri-button:hover {
   border-color: #a7a7a7;
 }
@@ -63,5 +72,18 @@
 }
 
 .curri-button.send {
+  margin: 1vh;
+}
+
+.curri-button.bottom-button {
+  position: fixed;
+  bottom: 0;
+  margin: 1vh;
+}
+
+.curri-course-result-container {
+  border: solid 1px #d3d3d3;
+  border-radius: 4px;
+  padding: 1vh;
   margin: 1vh;
 }

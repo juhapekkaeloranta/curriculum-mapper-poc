@@ -18,6 +18,7 @@ class CourseColumn extends Component {
               (course, topic, value) => this.props.updateTopicValueF(course, topic, value)
             }/>
         )}
+        <HeaderButton text='+'/>
     </div>
     )
   }
