@@ -1,6 +1,8 @@
 # curriculum-mapper-poc
 
-Live demo https://hy-mapper.github.io/
+Live demo of poc https://hy-mapper.github.io/ (only frontend)
+
+![screenshot.png](screenshot.png)
 
 More info in deployment repository https://github.com/hy-mapper/hy-mapper.github.io
 
@@ -9,7 +11,7 @@ More info in deployment repository https://github.com/hy-mapper/hy-mapper.github
 - Students can "vote" for prequisite topics for a course
   - Students can see list of courses available for voting
   - Students do not have to sign in to vote
-- Teachers can add topics for courses
+- Teachers can manage (crud + sort) topics for courses
   - no sign in, just a special link as auth
 - Students can add a topic for a course
 - Teachers ans students can see results for a course
@@ -34,6 +36,10 @@ More info in deployment repository https://github.com/hy-mapper/hy-mapper.github
     - Students: View and vote
     - Teachers: Edit topics, add courses
     - Admins: Create teacher usernames
+
+**Extra 3**
+
+- Self-assessment mode: Enable teacher get an understanding of students skill level at the beginning of a course
 
 ## Developing
 
